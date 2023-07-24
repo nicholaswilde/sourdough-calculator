@@ -2,13 +2,25 @@
 version: '3'
 
 tasks:
+  test:
+    desc: Launch the test runner in the interactive watch mode.
+    cmds:
+      - npm test
+  eject:
+    desc: Remove the single build dependency from the project.
+    cmds:
+      - npm run eject
+  build:
+    desc: Build the app for production to the build folder
+    cmds: 
+      - npm run build
   bootstrap:
     desc: Bootstrap the instance
     cmds:
       - task: install
       - task: start
   start:
-    desc: Start npm dev server
+    desc: Run the app in the development mode.
     cmds:
       - npm start
   install:
