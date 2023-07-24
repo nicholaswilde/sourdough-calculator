@@ -1,7 +1,7 @@
 {
-  "name": "Interest Calculator",
-  "short_name": "Interest Calculator",
-  "description": "A fast, user-friendly, offline-first, interest calculator progressive web app (PWA).",
+  "name": "Sourdough Calculator",
+  "short_name": "Sourdough Calculator",
+  "description": "A React app to calculate the weights of sourdough ingredients using The Bread Code Sourdough recipe",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
