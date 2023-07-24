@@ -2,10 +2,19 @@
 version: '3'
 
 tasks:
+  bootstrap:
+    desc: Bootstrap the instance
+    cmds:
+      - task: install
+      - task: start
   start:
     desc: Start npm dev server
     cmds:
       - npm start
+  install:
+    desc: Install node extensions
+    cmds:
+      - npm install
   default:
     cmds:
       - task -l
