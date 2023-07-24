@@ -20,4 +20,5 @@ jobs:
       uses: bitovi/github-actions-react-to-ghp@v1.2.0
       with:
         path: build # change to your build folder
+        build_commad: npm run build --legacy-peer-deps
 
