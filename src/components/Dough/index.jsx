@@ -5,8 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-import { calculateCompoundInterest } from '../../utils';
+import { calculateDough } from '../../utils';
 import Result from '../Result';
 
 const styles = theme => ({
@@ -39,44 +38,63 @@ const styles = theme => ({
   }
 });
 
-class CompoundInterest extends Component {
+class Dough extends Component {
   constructor(props) {
     super(props);
 
-    const data = JSON.parse(localStorage.getItem('compoundInterest'));
+    const data = JSON.parse(localStorage.getItem('Dough'));
 
     const {
+      breadFlour,
+      doughWeight,
       initialInvestment,
       interestRate,
+      wholeWheatFlour,
       calculationPeriod,
       calculationPeriodType,
-      compoundInterval,
-      regularInvestment,
+      salt,
+      hydration,
+      starter,
+      scale,
       resultData
     } = data || {
+      breadFlour: 80,
+      doughWeight: 835,
       initialInvestment: '',
       interestRate: '',
+      wholeWheatFlour: 20,
       calculationPeriod: '',
       calculationPeriodType: 1,
-      compoundInterval: 12,
-      regularInvestment: '',
+      salt: 2,
+      hydration: 65,
+      starter: 20,
+      scale: 1,
       resultData: [
         { name: 'Initial Investment', value: 0 },
-        { name: 'Regular Investment', value: 0 },
         { name: 'Interest Earned', value: 0 },
-        { name: 'Total', value: 0 }
+        { name: 'Total', value: 0 },
+        { name: 'Bread Flour (g)', value: 0 },
+        { name: 'Whole Wheat Flour (g)', value: 0 },
+        { name: 'Water (g)', value: 0 },
+        { name: 'Salt (g)', value: 0 },
+        { name: 'Starter (g)', value: 0 }
       ]
     };
 
     this.state = {
+      breadFlour,
+      doughWeight,
       initialInvestment,
       interestRate,
+      wholeWheatFlour,
       calculationPeriod,
       calculationPeriodType,
-      compoundInterval,
-      regularInvestment,
       isCalculating: false,
       isResetting: false,
+      salt,
+      hydration,
+      starter,
+      scale,
       resultData
     };
   }
@@ -95,26 +113,33 @@ class CompoundInterest extends Component {
         initialInvestment,
         interestRate,
         calculationPeriodType,
-        compoundInterval,
-        regularInvestment,
+        breadFlour,
+        wholeWheatFlour,
+        salt,
+        hydration,
         resultData
       } = this.state;
 
       let { calculationPeriod } = this.state;
       calculationPeriod = calculationPeriod / calculationPeriodType / 1;
 
-      const { P, PMT, I, A } = calculateCompoundInterest(
+      //let { totalPercentage } = this.state;
+      let totalPercentage = breadFlour + wholeWheatFlour + salt + hydration;
+      
+      const { P, I, A } = calculateDough(
         initialInvestment,
         interestRate,
-        calculationPeriod,
-        compoundInterval,
-        regularInvestment
+        calculationPeriod
       );
 
       resultData[0].value = P;
-      resultData[1].value = PMT;
-      resultData[2].value = I;
-      resultData[3].value = A;
+      resultData[1].value = I;
+      resultData[2].value = A;
+      resultData[3].value = breadFlour;
+      resultData[4].value = wholeWheatFlour;
+      resultData[5].value = 0;
+      resultData[6].value = 0;
+      resultData[7].value = totalPercentage;
 
       this.setState({ isCalculating: false, resultData });
 
@@ -127,19 +152,29 @@ class CompoundInterest extends Component {
 
     setTimeout(() => {
       this.setState({
-        initialInvestment: '',
+        breadFlour: 80,
+        doughWeight: 835,
+        initialInvestment: 835,
         interestRate: '',
+        wholeWheatFlour: 20,
         calculationPeriod: '',
         calculationPeriodType: 1,
-        compoundInterval: 12,
-        regularInvestment: '',
         isCalculating: false,
         isResetting: false,
+        salt: 2,
+        hydration: 65,
+        starter: 20,
+        scale: 1,
+        totalPercentage: 0,
         resultData: [
           { name: 'Initial Investment', value: 0 },
-          { name: 'Regular Investment', value: 0 },
           { name: 'Interest Earned', value: 0 },
-          { name: 'Total', value: 0 }
+          { name: 'Total', value: 0 },
+          { name: 'Bread Flour (g)', value: 0 },
+          { name: 'Whole Wheat Flour (g)', value: 0 },
+          { name: 'Water (g)', value: 0 },
+          { name: 'Salt (g)', value: 0 },
+          { name: 'Starter (g)', value: 0 }
         ]
       });
 
@@ -149,38 +184,42 @@ class CompoundInterest extends Component {
 
   render() {
     const {
+      breadFlour,
+      doughWeight,
       initialInvestment,
       interestRate,
+      wholeWheatFlour,
       calculationPeriod,
       calculationPeriodType,
-      compoundInterval,
-      regularInvestment,
       isCalculating,
       isResetting,
+      salt,
+      hydration,
+      starter,
+      scale,
       resultData
     } = this.state;
 
     const { classes } = this.props;
     let isFormFilled = false;
 
-    if (
-      initialInvestment &&
-      interestRate &&
-      calculationPeriod &&
-      compoundInterval
-    ) {
+    if (breadFlour && doughWeight && wholeWheatFlour && salt && hydration && starter && scale) {
       isFormFilled = true;
     }
 
     localStorage.setItem(
-      'compoundInterest',
+      'Dough',
       JSON.stringify({
+        doughWeight,
         initialInvestment,
         interestRate,
+        wholeWheatFlour,
         calculationPeriod,
         calculationPeriodType,
-        compoundInterval,
-        regularInvestment,
+        salt,
+        hydration,
+        starter,
+        scale,
         resultData
       })
     );
@@ -195,15 +234,80 @@ class CompoundInterest extends Component {
           onReset={this.handleReset}
         >
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 className={classes.input}
-                id="initial-investment"
-                name="initialInvestment"
-                label="Initial Investment"
+                id="dough-weight"
+                name="doughWeight"
+                label="Dough Weight (g)"
                 variant="outlined"
                 type="number"
-                value={initialInvestment}
+                value={doughWeight}
+                onChange={this.handleChange}
+                disabled={isCalculating || isResetting}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                className={classes.input}
+                id="scale"
+                name="scale"
+                label="Scale"
+                variant="outlined"
+                type="number"
+                value={scale}
+                onChange={this.handleChange}
+                disabled={isCalculating || isResetting}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                className={classes.input}
+                id="bread-flour"
+                name="breadFlour"
+                label="Bread Flour (%)"
+                variant="outlined"
+                type="number"
+                value={breadFlour}
+                onChange={this.handleChange}
+                disabled={isCalculating || isResetting}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                className={classes.input}
+                id="whole-wheat-flour"
+                name="wholeWheatFlour"
+                label="Whole Wheat Flour (%)"
+                variant="outlined"
+                type="number"
+                value={wholeWheatFlour}
+                onChange={this.handleChange}
+                disabled={isCalculating || isResetting}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                className={classes.input}
+                id="hydration"
+                name="hydration"
+                label="Hydration (%)"
+                variant="outlined"
+                type="number"
+                value={hydration}
+                onChange={this.handleChange}
+                disabled={isCalculating || isResetting}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                className={classes.input}
+                id="salt"
+                name="salt"
+                label="Salt (%)"
+                variant="outlined"
+                type="number"
+                value={salt}
                 onChange={this.handleChange}
                 disabled={isCalculating || isResetting}
               />
@@ -211,16 +315,17 @@ class CompoundInterest extends Component {
             <Grid item xs={12}>
               <TextField
                 className={classes.input}
-                id="interest-rate"
-                name="interestRate"
-                label="Yearly Interest Rate (%)"
+                id="starter"
+                name="starter"
+                label="Starter (%)"
                 variant="outlined"
                 type="number"
-                value={interestRate}
+                value={starter}
                 onChange={this.handleChange}
                 disabled={isCalculating || isResetting}
               />
             </Grid>
+            
             <Grid item xs={6}>
               <TextField
                 className={classes.input}
@@ -249,38 +354,6 @@ class CompoundInterest extends Component {
                 <MenuItem value={12}>Months</MenuItem>
                 <MenuItem value={1}>Years</MenuItem>
               </TextField>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className={classes.input}
-                id="compound-interval"
-                name="compoundInterval"
-                label="Compound Interval"
-                variant="outlined"
-                select
-                value={compoundInterval}
-                onChange={this.handleChange}
-                disabled={isCalculating || isResetting}
-              >
-                <MenuItem value={365}>Daily</MenuItem>
-                <MenuItem value={12}>Monthly</MenuItem>
-                <MenuItem value={4}>Quarterly</MenuItem>
-                <MenuItem value={2}>Half Yearly</MenuItem>
-                <MenuItem value={1}>Yearly</MenuItem>
-              </TextField>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className={classes.input}
-                id="regular-investment"
-                name="regularInvestment"
-                label="Regular Monthly Investment (Optional)"
-                variant="outlined"
-                type="number"
-                value={regularInvestment}
-                onChange={this.handleChange}
-                disabled={isCalculating || isResetting}
-              />
             </Grid>
             <Grid item xs={12}>
               <Button
@@ -325,4 +398,4 @@ class CompoundInterest extends Component {
   }
 }
 
-export default withStyles(styles)(CompoundInterest);
+export default withStyles(styles)(Dough);

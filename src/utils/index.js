@@ -1,4 +1,4 @@
-import calculateSimpleInterest from './calculateSimpleInterest';
-import calculateCompoundInterest from './calculateCompoundInterest';
+import calculateDough from './calculateDough';
+import calculateDiscard from './calculateDiscard';
 
-export { calculateSimpleInterest, calculateCompoundInterest };
+export { calculateDough, calculateDiscard };

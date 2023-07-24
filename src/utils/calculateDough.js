@@ -1,4 +1,4 @@
-const calculateSimpleInterest = (P, r, t) => {
+const calculateDough = (P, r, t) => {
   P = Number(P.toFixed(2));
   r = r / 100;
 
@@ -8,4 +8,4 @@ const calculateSimpleInterest = (P, r, t) => {
   return { P, I, A };
 };
 
-export default calculateSimpleInterest;
+export default calculateDough;

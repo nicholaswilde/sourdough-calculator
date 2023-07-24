@@ -1,22 +1,22 @@
 <h1 align="center">
-  <a href="https://safdarjamal.github.io/interest-calculator/">
-    Interest Calculator
+  <a href="https://nicholaswilde.io/sourdough-calculator/">
+    Sourdough Calculator
   </a>
 </h1>
 
 <p align="center">
-  A fast, user-friendly, offline-first, interest calculator progressive web app (PWA).
+  A fast, user-friendly, offline-first, sourdough calculator progressive web app (PWA).
 </p>
 
-![Interest Calculator in Action](https://user-images.githubusercontent.com/48409548/95246294-b3525500-082d-11eb-8507-650d617a226f.png)
+![Sourdough Calculator in Action](https://user-images.githubusercontent.com/48409548/95246294-b3525500-082d-11eb-8507-650d617a226f.png)
 
 ## Development
 
 To get a local copy of the code, clone it using git:
 
 ```
-git clone https://github.com/SafdarJamal/interest-calculator.git
-cd interest-calculator
+git clone https://github.com/nicholaswilde/sourdough-calculator.git
+cd sourdough-calculator
 ```
 
 Install dependencies:
@@ -44,4 +44,4 @@ and then you can open http://localhost:3000 to view it in the browser.
 
 ## License
 
-Code released under the [MIT License](https://github.com/SafdarJamal/interest-calculator/blob/master/LICENSE).
+Code released under the [MIT License](https://github.com/nicholaswilde/sourdough-calculator/blob/main/LICENSE).

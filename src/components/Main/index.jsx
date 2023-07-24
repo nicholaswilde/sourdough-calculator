@@ -4,8 +4,8 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 
 import TabsPanel from '../TabsPanel';
-import SimpleInterest from '../SimpleInterest';
-import CompoundInterest from '../CompoundInterest';
+import Dough from '../Dough';
+import Discard from '../Discard';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,10 +41,10 @@ const Main = () => {
       <Paper elevation={2} className={classes.paper}>
         <TabsPanel tabStatus={tabStatus} setTabStatus={setTabStatus} />
         {tabStatus === 0 && (
-          <SimpleInterest scrollTop={scrollTop} scrollBottom={scrollBottom} />
+          <Dough scrollTop={scrollTop} scrollBottom={scrollBottom} />
         )}
         {tabStatus === 1 && (
-          <CompoundInterest scrollTop={scrollTop} scrollBottom={scrollBottom} />
+          <Discard scrollTop={scrollTop} scrollBottom={scrollBottom} />
         )}
       </Paper>
       <div ref={bottom}></div>

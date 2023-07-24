@@ -1,0 +1,12 @@
+---
+version: '3'
+
+tasks:
+  start:
+    desc: Start npm dev server
+    cmds:
+      - npm start
+  default:
+    cmds:
+      - task -l
+    silent: true

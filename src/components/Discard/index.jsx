@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { calculateSimpleInterest } from '../../utils';
+import { calculateDiscard } from '../../utils';
 import Result from '../Result';
 
 const styles = theme => ({
@@ -39,25 +39,30 @@ const styles = theme => ({
   }
 });
 
-class SimpleInterest extends Component {
+class Discard extends Component {
   constructor(props) {
     super(props);
 
-    const data = JSON.parse(localStorage.getItem('simpleInterest'));
+    const data = JSON.parse(localStorage.getItem('Discard'));
 
     const {
       initialInvestment,
       interestRate,
       calculationPeriod,
       calculationPeriodType,
+      compoundInterval,
+      regularInvestment,
       resultData
     } = data || {
       initialInvestment: '',
       interestRate: '',
       calculationPeriod: '',
       calculationPeriodType: 1,
+      compoundInterval: 12,
+      regularInvestment: '',
       resultData: [
         { name: 'Initial Investment', value: 0 },
+        { name: 'Regular Investment', value: 0 },
         { name: 'Interest Earned', value: 0 },
         { name: 'Total', value: 0 }
       ]
@@ -68,6 +73,8 @@ class SimpleInterest extends Component {
       interestRate,
       calculationPeriod,
       calculationPeriodType,
+      compoundInterval,
+      regularInvestment,
       isCalculating: false,
       isResetting: false,
       resultData
@@ -88,21 +95,26 @@ class SimpleInterest extends Component {
         initialInvestment,
         interestRate,
         calculationPeriodType,
+        compoundInterval,
+        regularInvestment,
         resultData
       } = this.state;
 
       let { calculationPeriod } = this.state;
       calculationPeriod = calculationPeriod / calculationPeriodType / 1;
 
-      const { P, I, A } = calculateSimpleInterest(
+      const { P, PMT, I, A } = calculateDiscard(
         initialInvestment,
         interestRate,
-        calculationPeriod
+        calculationPeriod,
+        compoundInterval,
+        regularInvestment
       );
 
       resultData[0].value = P;
-      resultData[1].value = I;
-      resultData[2].value = A;
+      resultData[1].value = PMT;
+      resultData[2].value = I;
+      resultData[3].value = A;
 
       this.setState({ isCalculating: false, resultData });
 
@@ -119,10 +131,13 @@ class SimpleInterest extends Component {
         interestRate: '',
         calculationPeriod: '',
         calculationPeriodType: 1,
+        compoundInterval: 12,
+        regularInvestment: '',
         isCalculating: false,
         isResetting: false,
         resultData: [
           { name: 'Initial Investment', value: 0 },
+          { name: 'Regular Investment', value: 0 },
           { name: 'Interest Earned', value: 0 },
           { name: 'Total', value: 0 }
         ]
@@ -138,6 +153,8 @@ class SimpleInterest extends Component {
       interestRate,
       calculationPeriod,
       calculationPeriodType,
+      compoundInterval,
+      regularInvestment,
       isCalculating,
       isResetting,
       resultData
@@ -146,17 +163,24 @@ class SimpleInterest extends Component {
     const { classes } = this.props;
     let isFormFilled = false;
 
-    if (initialInvestment && interestRate && calculationPeriod) {
+    if (
+      initialInvestment &&
+      interestRate &&
+      calculationPeriod &&
+      compoundInterval
+    ) {
       isFormFilled = true;
     }
 
     localStorage.setItem(
-      'simpleInterest',
+      'Discard',
       JSON.stringify({
         initialInvestment,
         interestRate,
         calculationPeriod,
         calculationPeriodType,
+        compoundInterval,
+        regularInvestment,
         resultData
       })
     );
@@ -227,6 +251,38 @@ class SimpleInterest extends Component {
               </TextField>
             </Grid>
             <Grid item xs={12}>
+              <TextField
+                className={classes.input}
+                id="compound-interval"
+                name="compoundInterval"
+                label="Compound Interval"
+                variant="outlined"
+                select
+                value={compoundInterval}
+                onChange={this.handleChange}
+                disabled={isCalculating || isResetting}
+              >
+                <MenuItem value={365}>Daily</MenuItem>
+                <MenuItem value={12}>Monthly</MenuItem>
+                <MenuItem value={4}>Quarterly</MenuItem>
+                <MenuItem value={2}>Half Yearly</MenuItem>
+                <MenuItem value={1}>Yearly</MenuItem>
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                className={classes.input}
+                id="regular-investment"
+                name="regularInvestment"
+                label="Regular Monthly Investment (Optional)"
+                variant="outlined"
+                type="number"
+                value={regularInvestment}
+                onChange={this.handleChange}
+                disabled={isCalculating || isResetting}
+              />
+            </Grid>
+            <Grid item xs={12}>
               <Button
                 className={classes.calcButton}
                 type="submit"
@@ -269,4 +325,4 @@ class SimpleInterest extends Component {
   }
 }
 
-export default withStyles(styles)(SimpleInterest);
+export default withStyles(styles)(Discard);

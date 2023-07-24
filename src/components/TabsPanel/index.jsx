@@ -19,8 +19,8 @@ const TabsPanel = ({ tabStatus, setTabStatus }) => {
           centered
           variant="fullWidth"
         >
-          <Tab label="Simple Interest" />
-          <Tab label="Compound Interest" />
+          <Tab label="Dough" />
+          <Tab label="Discard" />
         </Tabs>
       </Paper>
     </nav>

@@ -1,4 +1,4 @@
-const calculateCompoundInterest = (P, r, t, n, PMT) => {
+const calculateDiscard = (P, r, t, n, PMT) => {
   P = Number(P.toFixed(2));
   r = r / 100;
   PMT = Number(Number(PMT).toFixed(2));
@@ -16,4 +16,4 @@ const calculateCompoundInterest = (P, r, t, n, PMT) => {
   return { P, PMT, I, A };
 };
 
-export default calculateCompoundInterest;
+export default calculateDiscard;
