@@ -1,16 +1,11 @@
-<h1 align="center">
-  <a href="https://nicholaswilde.io/sourdough-calculator/">
-    Sourdough Calculator
-  </a>
-</h1>
+<!-- markdownlint-disable-next-line no-trailing-punctuation -->
+# :bread: Sourdough Calculator :abacus:
 
-<p align="center">
-  A fast, user-friendly, offline-first, sourdough calculator progressive web app (PWA).
-</p>
+A React app to calculate the weights of sourdough ingredients using [The Bread Code Sourdough recipe][1].
 
-![Sourdough Calculator in Action](https://user-images.githubusercontent.com/48409548/95246294-b3525500-082d-11eb-8507-650d617a226f.png)
+---
 
-## Development
+## :gear:&nbsp; Development
 
 To get a local copy of the code, clone it using git:
 
@@ -42,6 +37,18 @@ and then you can open http://localhost:3000 to view it in the browser.
 | npm run build | Builds the app for production to the `build` folder.                    |
 | npm run eject | This command will remove the single build dependency from your project. |
 
-## License
+---
 
-Code released under the [MIT License](https://github.com/nicholaswilde/sourdough-calculator/blob/main/LICENSE).
+<!-- spellchecker-disable -->
+## :balance_scale: &nbsp; License
+<!-- spellchecker-enable -->
+
+​[​MIT License​](../LICENSE)
+
+---
+
+## :pencil:​&nbsp;​Author
+
+​This project was started in 2023 by [​Nicholas Wilde​](https://github.com/nicholaswilde/).
+
+[1]: <https://nicholaswilde.io/recipes/breads/the-bread-code-sourdough/>
