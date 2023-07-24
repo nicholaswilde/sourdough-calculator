@@ -1,10 +1,10 @@
 {
-  "name": "interest-calculator",
-  "version": "1.0.0",
+  "name": "sourdough-calculator",
+  "version": "0.1.0",
   "private": true,
   "author": {
     "name": "Nicholas Wilde",
-    "url": "https://nicholaswilde.io"
+    "url": "https://nicholaswilde.io/"
   },
   "homepage": "https://nicholaswilde.io/sourdough-calculator/",
   "dependencies": {
@@ -19,11 +19,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
