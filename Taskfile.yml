@@ -12,10 +12,10 @@ tasks:
       - npm run eject
   build:
     desc: Build the app for production to the build folder
-    cmds: 
+    cmds:
       - npm run build
   bootstrap:
-    desc: Bootstrap the instance
+    desc: Bootstrap the calculator
     cmds:
       - task: install
       - task: start
@@ -24,7 +24,7 @@ tasks:
     cmds:
       - npm start
   install:
-    desc: Install node extensions
+    desc: Install required node packages.
     cmds:
       - npm install
   default:
