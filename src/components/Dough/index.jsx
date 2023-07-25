@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import withStyles from '@mui/styles/withStyles';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import { calculateDough } from '../../utils';
 import Result from '../Result';
 
@@ -19,7 +19,7 @@ const styles = theme => ({
     marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
       width: '48%',
-      marginRight: 11,
+      marginRight: 10,
       marginBottom: 0
     }
   },
@@ -27,7 +27,7 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: '48%',
-      marginLeft: 11
+      marginLeft: 10
     }
   },
   buttonProgress: {
@@ -313,6 +313,7 @@ class Dough extends Component {
                 className={classes.resetButton}
                 type="reset"
                 variant="contained"
+                color="secondary"
                 size="large"
                 disabled={!isFormFilled || isResetting}
               >

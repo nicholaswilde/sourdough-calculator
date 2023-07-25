@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { IconButton } from '@material-ui/core';
-import { GitHub } from '@material-ui/icons';
-import Container from '@material-ui/core/Container';
+import makeStyles from '@mui/styles/makeStyles';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { IconButton } from '@mui/material';
+import { GitHub } from '@mui/icons-material';
+import Container from '@mui/material/Container';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +31,8 @@ const Header = () => {
           className={classes.menuButton}
           color="inherit"
           aria-label="menu"
-          href="https://github.com/nicholaswilde/sourdough-calculator">
+          href="https://github.com/nicholaswilde/sourdough-calculator"
+          size="large">
             <GitHub />
         </IconButton>
       </Toolbar>

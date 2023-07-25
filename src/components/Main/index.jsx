@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
+import makeStyles from '@mui/styles/makeStyles';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 
 import TabsPanel from '../TabsPanel';
 import Dough from '../Dough';
