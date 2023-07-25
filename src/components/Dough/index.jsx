@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { calculateDough } from '../../utils';
@@ -47,11 +46,7 @@ class Dough extends Component {
     const {
       breadFlour,
       doughWeight,
-      initialInvestment,
-      interestRate,
       wholeWheatFlour,
-      calculationPeriod,
-      calculationPeriodType,
       salt,
       hydration,
       starter,
@@ -60,19 +55,12 @@ class Dough extends Component {
     } = data || {
       breadFlour: 80,
       doughWeight: 835,
-      initialInvestment: '',
-      interestRate: '',
       wholeWheatFlour: 20,
-      calculationPeriod: '',
-      calculationPeriodType: 1,
       salt: 2,
       hydration: 65,
       starter: 20,
       scale: 1,
       resultData: [
-        { name: 'Initial Investment', value: 0 },
-        { name: 'Interest Earned', value: 0 },
-        { name: 'Total', value: 0 },
         { name: 'Bread Flour (g)', value: 0 },
         { name: 'Whole Wheat Flour (g)', value: 0 },
         { name: 'Water (g)', value: 0 },
@@ -84,11 +72,7 @@ class Dough extends Component {
     this.state = {
       breadFlour,
       doughWeight,
-      initialInvestment,
-      interestRate,
       wholeWheatFlour,
-      calculationPeriod,
-      calculationPeriodType,
       isCalculating: false,
       isResetting: false,
       salt,
@@ -110,36 +94,34 @@ class Dough extends Component {
 
     setTimeout(() => {
       const {
-        initialInvestment,
-        interestRate,
-        calculationPeriodType,
         breadFlour,
+        doughWeight,
         wholeWheatFlour,
         salt,
         hydration,
+        starter,
+        scale,
         resultData
       } = this.state;
 
-      let { calculationPeriod } = this.state;
-      calculationPeriod = calculationPeriod / calculationPeriodType / 1;
-
-      //let { totalPercentage } = this.state;
       let totalPercentage = breadFlour + wholeWheatFlour + salt + hydration;
       
-      const { P, I, A } = calculateDough(
-        initialInvestment,
-        interestRate,
-        calculationPeriod
+      const { BF, WWF, W, S, starterWeight } = calculateDough(
+        totalPercentage,
+        scale,
+        breadFlour,
+        doughWeight,
+        wholeWheatFlour,
+        hydration,
+        salt,
+        starter
       );
 
-      resultData[0].value = P;
-      resultData[1].value = I;
-      resultData[2].value = A;
-      resultData[3].value = breadFlour;
-      resultData[4].value = wholeWheatFlour;
-      resultData[5].value = 0;
-      resultData[6].value = 0;
-      resultData[7].value = totalPercentage;
+      resultData[0].value = BF;
+      resultData[1].value = WWF;
+      resultData[2].value = W;
+      resultData[3].value = S;
+      resultData[4].value = starterWeight;
 
       this.setState({ isCalculating: false, resultData });
 
@@ -154,22 +136,14 @@ class Dough extends Component {
       this.setState({
         breadFlour: 80,
         doughWeight: 835,
-        initialInvestment: 835,
-        interestRate: '',
         wholeWheatFlour: 20,
-        calculationPeriod: '',
-        calculationPeriodType: 1,
         isCalculating: false,
         isResetting: false,
         salt: 2,
         hydration: 65,
         starter: 20,
         scale: 1,
-        totalPercentage: 0,
         resultData: [
-          { name: 'Initial Investment', value: 0 },
-          { name: 'Interest Earned', value: 0 },
-          { name: 'Total', value: 0 },
           { name: 'Bread Flour (g)', value: 0 },
           { name: 'Whole Wheat Flour (g)', value: 0 },
           { name: 'Water (g)', value: 0 },
@@ -186,11 +160,7 @@ class Dough extends Component {
     const {
       breadFlour,
       doughWeight,
-      initialInvestment,
-      interestRate,
       wholeWheatFlour,
-      calculationPeriod,
-      calculationPeriodType,
       isCalculating,
       isResetting,
       salt,
@@ -211,11 +181,7 @@ class Dough extends Component {
       'Dough',
       JSON.stringify({
         doughWeight,
-        initialInvestment,
-        interestRate,
         wholeWheatFlour,
-        calculationPeriod,
-        calculationPeriodType,
         salt,
         hydration,
         starter,
@@ -324,36 +290,6 @@ class Dough extends Component {
                 onChange={this.handleChange}
                 disabled={isCalculating || isResetting}
               />
-            </Grid>
-            
-            <Grid item xs={6}>
-              <TextField
-                className={classes.input}
-                id="calculation-period"
-                name="calculationPeriod"
-                label="Calculation Period"
-                variant="outlined"
-                type="number"
-                value={calculationPeriod}
-                onChange={this.handleChange}
-                disabled={isCalculating || isResetting}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                className={classes.input}
-                id="calculation-period-type"
-                name="calculationPeriodType"
-                variant="outlined"
-                select
-                value={calculationPeriodType}
-                onChange={this.handleChange}
-                disabled={isCalculating || isResetting}
-              >
-                <MenuItem value={365}>Days</MenuItem>
-                <MenuItem value={12}>Months</MenuItem>
-                <MenuItem value={1}>Years</MenuItem>
-              </TextField>
             </Grid>
             <Grid item xs={12}>
               <Button

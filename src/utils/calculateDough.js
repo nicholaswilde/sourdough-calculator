@@ -1,11 +1,12 @@
-const calculateDough = (P, r, t) => {
-  P = Number(P.toFixed(2));
-  r = r / 100;
+const calculateDough = (T, scale, BFP, DW, WWFP, hydration, SP, starter) => {
 
-  const I = Number((P * (1 + r * t) - P).toFixed(2));
-  const A = P + I;
+  const BF = scale*(BFP*DW/T);
+  const WWF = scale*(WWFP*DW/T);
+  const W = scale*(hydration*DW/T);
+  const S = Number((scale*(SP*DW/T)).toFixed(2));
+  const starterWeight = scale*(starter*DW/T);
 
-  return { P, I, A };
+  return { BF, WWF, W, S, starterWeight };
 };
 
 export default calculateDough;
