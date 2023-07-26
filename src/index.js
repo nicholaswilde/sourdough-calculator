@@ -1,21 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 
 const theme = createTheme();
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-ReactDOM.render(
+root.render(
   <React.StrictMode>
-  <ThemeProvider theme={theme}>
-  <StyledEngineProvider injectFirst>
-    <App />
-    </StyledEngineProvider>
+    <ThemeProvider theme={theme}>
+      <StyledEngineProvider injectFirst>
+        <App />
+      </StyledEngineProvider>
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
-serviceWorker.register();
+serviceWorker.unregister();
