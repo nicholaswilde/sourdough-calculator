@@ -2,6 +2,10 @@
 version: '3'
 
 tasks:
+  outdated:
+    desc: Check for outdated node packages.
+    cmds:
+      - npm outdated
   test:
     desc: Launch the test runner in the interactive watch mode.
     cmds:
