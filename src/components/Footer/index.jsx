@@ -10,7 +10,7 @@ import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 
 function Copyright() {
   return (
-    <Typography variant="body1" color="text.secondary">
+    <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       {new Date().getFullYear()}
       {' '}
@@ -42,10 +42,24 @@ export default function StickyFooter() {
           }}
         >
           <Container maxWidth="lg">
-              <Copyright />
-              <Typography variant="body2">
-                Made with React
-              </Typography>
+            <Grid container spacing={5}>
+              <Grid item xs={12} sm={4}>
+                <Copyright />
+                <Typography variant="body2">
+                  Made with React
+                </Typography>
+              </Grid>
+              <Grid item sm={8}>
+                <Box display="flex" justifyContent="flex-end">
+                  <Link href="https://www.facebook.com/" color="inherit">
+                    <Facebook />
+                  </Link>
+                  <Link href="https://www.twitter.com/" color="inherit">
+                    <Twitter />
+                  </Link>
+                </Box>
+              </Grid>
+            </Grid>
           </Container>
         </Box>
     </ThemeProvider>
