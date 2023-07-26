@@ -1,7 +1,8 @@
 <!-- markdownlint-disable-next-line no-trailing-punctuation -->
 # :bread: Sourdough Calculator :abacus:
 
-A React app to calculate the weights of sourdough ingredients using [The Bread Code Sourdough recipe][1].
+A React app to calculate the weights of sourdough ingredients using [The Bread Code Sourdough recipe][1] and based off
+of [The Sourdough System Reboot][2].
 
 ---
 
@@ -49,6 +50,8 @@ and then you can open http://localhost:3000 to view it in the browser.
 
 ## :pencil:​&nbsp;​Author
 
-​This project was started in 2023 by [​Nicholas Wilde​](https://github.com/nicholaswilde/).
+​This project was started in 2023 by [Nicholas Wilde][3].
 
 [1]: <https://nicholaswilde.io/recipes/breads/the-bread-code-sourdough/>
+[2]: <https://www.culinaryexploration.eu/blog/the-system-reboot>
+[3]: <https://github.com/nicholaswilde/>
