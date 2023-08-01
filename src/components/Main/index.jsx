@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     marginTop: 80,
-    marginBottom: 20,
+    marginBottom: 80,
     margin: 'auto',
     [theme.breakpoints.up('md')]: {
       width: '50%'
