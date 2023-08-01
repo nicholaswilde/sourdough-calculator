@@ -17,7 +17,7 @@ const styles = theme => ({
   calcButton: {
     width: '100%',
     marginBottom: 16,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('lg')]: {
       width: '48%',
       marginRight: 10,
       marginBottom: 0
@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   resetButton: {
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('lg')]: {
       width: '48%',
       marginLeft: 10
     }
