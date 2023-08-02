@@ -1,17 +1,29 @@
 {
   "name": "sourdough-calculator",
   "version": "0.1.0",
+  "description": "A React app to calculate the weights of sourdough ingredients using The Bread Code Sourdough recipe",
+  "license": "MIT",
   "private": true,
   "author": {
-    "name": "Nicholas Wilde",
+    "name": "nιcнolaѕ wιlde",
     "url": "https://nicholaswilde.io/"
   },
-  "homepage": "https://nicholaswilde.io/sourdough-calculator/",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/nicholaswilde/sourdough-calculator/issues"
+  },
+  "homepage": "https://nicholaswilde.io/sourdough-calculator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholaswilde/sourdough-calculator.git"
+  },
+  "keywords": [
+      "react",
+      "reactjs"
+    ],
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.2",
     "@mui/styles": "^5.14.1",
